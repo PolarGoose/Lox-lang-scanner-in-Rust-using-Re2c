@@ -1,0 +1,8 @@
+[package]
+name = "Lox-language-scanner-re2c-Rust"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0"
+thiserror = "2"
