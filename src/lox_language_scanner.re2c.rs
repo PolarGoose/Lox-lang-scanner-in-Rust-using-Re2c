@@ -160,24 +160,24 @@ impl<'a> Iterator for Scanner<'a> {
         /*!stags:re2c format = 'let mut @@ = std::usize::MAX;'; */
 
         'lex: loop { /*!local:re2c
-            re2c:encoding:utf8     = 1;
-            re2c:api               = generic;
-            re2c:tags              = 1;
-            re2c:eof               = 0;
-            re2c:yyfill:enable     = 0;
+            re2c:encoding:utf8 = 1;
+            re2c:api           = generic;
+            re2c:tags          = 1;
+            re2c:eof           = 0;
+            re2c:yyfill:enable = 0;
 
-            re2c:define:YYCTYPE    = u8;
-            re2c:define:YYPEEK     = "if self.cursor < self.s.len() { *self.s.get_unchecked(self.cursor) } else { 0 }";
-            re2c:define:YYSKIP     = "self.cursor += 1;";
-            re2c:define:YYBACKUP   = "self.mark = self.cursor;";
-            re2c:define:YYRESTORE  = "self.cursor = self.mark;";
-            re2c:YYBACKUPCTX        = "self.ctxmarker = self.cursor;";
-            re2c:YYRESTORECTX       = "self.cursor = self.ctxmarker;";
-            re2c:define:YYLESSTHAN = "self.s.len() <= self.cursor";
-            re2c:YYSHIFT           = "self.cursor = (self.cursor as isize + @@{shift}) as usize;";
-            re2c:YYSTAGP           = "@@{tag} = self.cursor;";
-            re2c:YYSTAGN           = "@@{tag} = std::usize::MAX;";
-            re2c:YYSHIFTSTAG       = "@@{tag} = (@@{tag} as isize + @@{shift}) as usize;";
+            re2c:YYCTYPE      = u8;
+            re2c:YYPEEK       = "if self.cursor < self.s.len() { *self.s.get_unchecked(self.cursor) } else { 0 }";
+            re2c:YYSKIP       = "self.cursor += 1;";
+            re2c:YYBACKUP     = "self.mark = self.cursor;";
+            re2c:YYRESTORE    = "self.cursor = self.mark;";
+            re2c:YYBACKUPCTX  = "self.ctxmarker = self.cursor;";
+            re2c:YYRESTORECTX = "self.cursor = self.ctxmarker;";
+            re2c:YYLESSTHAN   = "self.s.len() <= self.cursor";
+            re2c:YYSHIFT      = "self.cursor = (self.cursor as isize + @@{shift}) as usize;";
+            re2c:YYSTAGP      = "@@{tag} = self.cursor;";
+            re2c:YYSTAGN      = "@@{tag} = std::usize::MAX;";
+            re2c:YYSHIFTSTAG  = "@@{tag} = (@@{tag} as isize + @@{shift}) as usize;";
 
             // New lines. Update the line number and line start index
             "\r\n" | "\n\r" | "\r" | "\n"           { self.current_line_number += 1; self.current_line_start_index = self.cursor; continue 'lex; }
